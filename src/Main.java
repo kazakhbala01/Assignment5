@@ -18,5 +18,7 @@ public class Main {
         for (var key : tree) {
             System.out.println("Key: " + key + " Value: " + tree.get(key));
         }
+        System.out.println();
+       tree.findHeight();
     }
 }

@@ -23,6 +23,46 @@ public class BST<K extends Comparable<K>, V> implements Iterable<K> {
         return size;
     }
 
+    public void findHeight(){
+        System.out.println(find(root));
+    }
+    private int find(Node node){
+       int size1=findLeft(node.left,0);
+       int size2=findRight(node.right,0);
+       return Math.max(size1, size2);
+    }
+    private int findLeft(Node node, int size){
+        size++;
+        if(node==null){
+            return size;
+        }
+        if(node.right==null){
+            size=findLeft(node.left,size);
+        }if(node.left==null){
+            size=findLeft(node.right,size);
+        }
+        else{
+            size=findLeft(node.right,size);
+            size=findLeft(node.left,size);
+        }
+        return size;
+    }
+    private int findRight(Node node, int size){
+        if(node==null){
+            return size;
+        }
+        if(node.right==null){
+            size=findLeft(node.left,size);
+        }if(node.left==null){
+            size=findLeft(node.right,size);
+        }
+        else{
+            size=findLeft(node.right,size);
+            size=findLeft(node.left,size);
+        }
+        return size;
+    }
+
     // Inserts a key-value pair into the binary search tree
     public void put(K key, V value) {
         root = put(root, key, value);
